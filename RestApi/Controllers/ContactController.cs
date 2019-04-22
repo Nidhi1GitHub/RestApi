@@ -47,13 +47,22 @@ namespace RestApi.Controllers
         //    };
         //}
 
-        //http://localhost:54970/api/Get
+        //http://localhost:54970/api/contact
 
-        [Route("api/Get")]
-        public Contact[] Get()
+        //[Route("api/contact")]
+        //public Contact[] Get()
+        //{
+        //    return contactRepository.GetAllContacts();
+        //}
+
+        [Route("api/contact")]
+        public HttpResponseMessage Post(Contact contact)
         {
-            return contactRepository.GetAllContacts();
-        }
+            this.contactRepository.SaveContact(contact);
 
+            var response = Request.CreateResponse<Contact>(System.Net.HttpStatusCode.Created, contact);
+
+            return response;
+        }
     }
 }
