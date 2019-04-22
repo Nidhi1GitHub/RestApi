@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +11,18 @@ namespace RestApi.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
+        //http://localhost:54970/api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
+        }
+        //http://localhost:54970/api/GetEmployees
+
+        [Route("api/GetEmployees")]
+        public IEnumerable<Employee> GetEmployees()
+        {
+            var employees = new Employees();
+            return employees.GetEmployees();
         }
 
         // GET api/values/5
